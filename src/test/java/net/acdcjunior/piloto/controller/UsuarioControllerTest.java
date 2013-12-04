@@ -8,7 +8,7 @@ import net.acdcjunior.piloto.test.ControllerIntegrationTest;
 import org.junit.Test;
 
 public class UsuarioControllerTest extends ControllerIntegrationTest {
-
+	
 	@Test
 	public void usuarios__deve_trazer_200_ok() throws Exception {
         this.mockMvc.perform(get("/usuarios"))
@@ -19,12 +19,17 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 	
 	@Test
 	public void createUsuario_Model__deve_trazer_200_ok() throws Exception {
-        this.mockMvc.perform(get("/create-usuario")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/create-usuario"))
+        			.andExpect(status().isOk())
+        			.andExpect(forwardedUrl("/WEB-INF/views/create-usuario.jsp"));
 	}
 
 	@Test
-	public void createUsuario_Model_String__deve_trazer_fazer_redirect_302() throws Exception {
-        this.mockMvc.perform(post("/create-usuario").param("nome", "bob")).andExpect(status().isMovedTemporarily());
+	public void createUsuario_Model_String__deve_trazer_fazer_redirect() throws Exception {
+        this.mockMvc.perform(post("/create-usuario").param("nome", "bob"))
+        			.andDo(print())
+        			.andExpect(status().isMovedTemporarily())
+        			.andExpect(redirectedUrl("/usuarios.html"));
 	}
 
 }
