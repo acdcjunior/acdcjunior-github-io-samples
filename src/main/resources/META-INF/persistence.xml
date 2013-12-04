@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+	                    http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="pilotoPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<!-- Nome JNDI do Data Source -->
+		<non-jta-data-source>java:/comp/env/jdbc/pilotoDataSource</non-jta-data-source>
+		
+		<!--
+			Arquivos contendo somente as @NamedQueries.
+			Considero melhor do que as anotacoes nas classes de entidade.
+			Qualquer organizacao de arquivos eh possivel (um por entidade,
+			um por query ou por qualquer coisa que faca sentido pra aplicacao).
+		-->
+		<mapping-file>META-INF/jpql/Funcao.xml</mapping-file>
+		<mapping-file>META-INF/jpql/Usuario.xml</mapping-file>
+		
+		<properties>
+			<!-- Dialeto do banco de PRODUCAO! -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+		</properties>
+	</persistence-unit>
+</persistence>
