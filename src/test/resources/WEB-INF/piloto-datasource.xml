@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
      					http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-					    http://www.springframework.org/schema/context
-					    http://www.springframework.org/schema/context/spring-context-2.5.xsd
-					    http://www.springframework.org/schema/jee
-					    http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 						http://www.springframework.org/schema/jdbc
 						http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-   <!-- <bean id="pilotoDataSource" class="net.acdcjunior.piloto.test.PilotoDataSource" /> -->
-   
-   <bean id="pilotoDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:bancoDeTestesEmMemoria" />
-        <property name="username" value="sa" />
-        <property name="password" value="" />
-	</bean>
-	
-	<jdbc:initialize-database data-source="pilotoDataSource">
+   	<bean id="pilotoDataSource" class="net.acdcjunior.piloto.test.TestDataSource">
+   	</bean>
+   	
+   	<!--
+   	A configuracao abaixo, que ja vem com o Spring, poderia ser usada (o que tornaria
+   	a classe TestDataSource desnecessaria).
+   	Essa configuracao cria um banco embarcado H2 para os testes (como o TestDataSource).
+   	
+   	A diferenca, e que me fez optar por criar a TestDataSource, eh que a jdbc:embedded-database
+   	nao recria (isto eh, nao apaga a base e re-executa os scripts) a cada teste, o que faz com
+   	que as alteracoes (dados inseridos/removidos) de um teste sejam levadas para outros testes.
+   	
+   	O TestDataSource nao faz isso: toda execucao de metodo eh feita em uma base nova, do zero.
+   	Com relacao ao tempo, ainda, o TestDataSource eh 0.2s mais rapido.
+   	 -->
+	<!--
+	<jdbc:embedded-database id="pilotoDataSource" type="H2">
 	    <jdbc:script location="classpath:esquema.sql" />
 	    <jdbc:script location="classpath:dadosDeTeste.sql" />
-	</jdbc:initialize-database>
+	</jdbc:embedded-database>
+	-->
 
 </beans>
