@@ -19,17 +19,17 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 	
 	@Test
 	public void createUsuario_Model__deve_trazer_200_ok() throws Exception {
-        this.mockMvc.perform(get("/create-usuario"))
+        this.mockMvc.perform(get("/usuarios/novo"))
         			.andExpect(status().isOk())
-        			.andExpect(forwardedUrl("/WEB-INF/views/create-usuario.jsp"));
+        			.andExpect(forwardedUrl("/WEB-INF/views/usuario-novo.jsp"));
 	}
 
 	@Test
 	public void createUsuario_Model_String__deve_trazer_fazer_redirect() throws Exception {
-        this.mockMvc.perform(post("/create-usuario").param("nome", "bob"))
+        this.mockMvc.perform(post("/usuarios").param("nome", "bob"))
         			.andDo(print())
         			.andExpect(status().isMovedTemporarily())
-        			.andExpect(redirectedUrl("/usuarios.html"));
+        			.andExpect(redirectedUrl("usuarios"));
 	}
 
 }

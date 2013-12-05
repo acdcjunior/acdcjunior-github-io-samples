@@ -22,18 +22,18 @@ public class UsuarioController {
         return "usuarios";
     }
 
-    @RequestMapping(value = "/create-usuario", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuarios/novo", method = RequestMethod.GET)
     public String createUsuario(Model model) {
-        return "create-usuario";
+        return "usuario-novo";
     }
 
-    @RequestMapping(value = "/create-usuario", method = RequestMethod.POST)
+    @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
     @Transactional
     public String createUsuario(Model model, String nome) {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
-        return "redirect:/usuarios.html";
+        return "redirect:usuarios";
     }
     
 }
