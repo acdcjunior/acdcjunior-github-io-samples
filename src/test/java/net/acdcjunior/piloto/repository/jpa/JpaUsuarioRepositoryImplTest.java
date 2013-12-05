@@ -25,7 +25,7 @@ import org.junit.Test;
 public class JpaUsuarioRepositoryImplTest {
 	
 	@Rule
-	public InjetarEntityManagerRule emRule = new InjetarEntityManagerRule(this);
+	public InjetarEntityManagerRule emRule = new InjetarEntityManagerRule();
 	
 	@InjetarEntityManager
 	UsuarioRepository jpaUsuarioRepositoryImpl = new JpaUsuarioRepositoryImpl();

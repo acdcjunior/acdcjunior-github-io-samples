@@ -14,11 +14,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.apache.naming.java.javaURLContextFactory;
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
+import org.junit.rules.MethodRule;
+import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-public class InjetarEntityManagerRule implements TestRule {
+public class InjetarEntityManagerRule implements MethodRule {
 	
 	@Target(ElementType.FIELD)
 	@Retention(RetentionPolicy.RUNTIME)
@@ -26,14 +26,11 @@ public class InjetarEntityManagerRule implements TestRule {
 	
 	private static final String NOME_CAMPO_ENTITYMANAGER = "em";
 	
-	private Object instanciaDaClasseDeTestes;
-	
 	private static EntityManagerFactory entityManagerFactory;
 	
 	private EntityManager em;
 	
-	public InjetarEntityManagerRule(Object instanciaDaClasseDeTestes) {
-		this.instanciaDaClasseDeTestes = instanciaDaClasseDeTestes;
+	public InjetarEntityManagerRule() {
 		inicializarEntityManagerFactory();
 	}
 	
@@ -42,15 +39,15 @@ public class InjetarEntityManagerRule implements TestRule {
 	}
 	
 	@Override
-	public Statement apply(final Statement base, Description description) {
+	public Statement apply(Statement base, FrameworkMethod method, Object target) {
 		this.em = entityManagerFactory.createEntityManager();
-		InjetorDeEntityManager.injetarCamposAnotados(instanciaDaClasseDeTestes, NOME_CAMPO_ENTITYMANAGER, this.em);
+		InjetorDeEntityManager.injetarCamposAnotados(target, NOME_CAMPO_ENTITYMANAGER, this.em);
 		return base;
 	}
 	
 	private void inicializarEntityManagerFactory() {
 		try {
-			System.out.println("~~~~"+instanciaDaClasseDeTestes.getClass()+" :: EMF --> "+entityManagerFactory);
+			System.out.println("~~~~ :: EMF --> "+entityManagerFactory);
 			if (entityManagerFactory == null) {
 				realizarBindJndiDoDataSourceDeTestes();
 				
