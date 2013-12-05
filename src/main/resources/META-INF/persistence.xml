@@ -21,8 +21,7 @@
 		<mapping-file>META-INF/jpql/Usuario.xml</mapping-file>
 		
 		<properties>
-			<!-- Dialeto do banco de PRODUCAO! -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.ejb.cfgfile" value="hibernate.cfg.xml"/>
 		</properties>
 	</persistence-unit>
 </persistence>

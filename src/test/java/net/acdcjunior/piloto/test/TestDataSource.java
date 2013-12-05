@@ -1,10 +1,7 @@
 package net.acdcjunior.piloto.test;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,8 +24,7 @@ public class TestDataSource extends org.h2.jdbcx.JdbcDataSource {
 
 	private String gerarUrl() {
 		String url = "jdbc:h2:mem:bancoDeTestesEmMemoria;INIT=";
-		Properties p = carregarPropertiesDoClassPath();
-		String scripts = p.getProperty("scripts");
+		String scripts = TestProperties.getProperty("TestDataSource.scripts");
 		if (scripts != null) {
 			String[] scriptsDoBancoDeTeste = scripts.split(",");
 			for (String nomeScript : scriptsDoBancoDeTeste) {
@@ -36,17 +32,6 @@ public class TestDataSource extends org.h2.jdbcx.JdbcDataSource {
 			}
 		}
 		return url;
-	}
-	
-	private static Properties carregarPropertiesDoClassPath() {
-		InputStream inputStream = TestDataSource.class.getClassLoader().getResourceAsStream("TestDataSource.properties");
-		Properties p = new Properties();
-		try {
-			p.load(inputStream);
-		} catch (IOException e) {
-			throw new RuntimeException("Erro ao carregar propriedades do TestDataSource!", e);
-		}
-		return p;
 	}
 	
 	private static String deduzirCaminhoAbsolutoDeArquivo(String relativeFilePath) {

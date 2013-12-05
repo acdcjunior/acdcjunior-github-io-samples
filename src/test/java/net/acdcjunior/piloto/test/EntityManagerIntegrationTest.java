@@ -1,7 +1,5 @@
 package net.acdcjunior.piloto.test;
 
-import java.util.Properties;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -28,12 +26,13 @@ public abstract class EntityManagerIntegrationTest {
 	}
 	
 	/**
-	 * Inicializa a factory de EntityManagers, caso nao tenha sido inicializada, e
+	 * Inicializa a EntityManagerFactory, caso nao tenha sido inicializada, e
 	 * retorna um EntityManager criado a partir dela.
 	 */
 	protected EntityManager getEntityManagerDeTestes() {
 		if (entityManagerFactory == null) {
-			criarEntityManagerFactoryDeTestes();
+			String nomePersistenceUnit = TestProperties.getProperty("EntityManagerIntegrationTest.nomePersistenceUnit");
+			entityManagerFactory = Persistence.createEntityManagerFactory(nomePersistenceUnit);
 		}
 		return entityManagerFactory.createEntityManager();
 	}
@@ -48,21 +47,14 @@ public abstract class EntityManagerIntegrationTest {
 		ic.createSubcontext("java:/comp/env");
 		ic.createSubcontext("java:/comp/env/jdbc");
 		
-		ic.bind("java:/comp/env/jdbc/pilotoDataSource", new TestDataSource());
+		String nomeDataSource = TestProperties.getProperty("EntityManagerIntegrationTest.nomeDataSource");
+		ic.bind("java:/comp/env/jdbc/"+nomeDataSource, new TestDataSource());
 	}
 
 	private static void desfazerBindJndiDoDataSourceDeTestes() throws NamingException {
 		InitialContext ic = new InitialContext();
-		ic.unbind("java:/comp/env/jdbc/pilotoDataSource");
+		String nomeDataSource = TestProperties.getProperty("EntityManagerIntegrationTest.nomeDataSource");
+		ic.unbind("java:/comp/env/jdbc/"+nomeDataSource);
 	}
 	
-	private void criarEntityManagerFactoryDeTestes() {
-		// sobrescreve propriedades do persistence-unit para os testes
-		Properties p = new Properties();
-        p.put("javax.persistence.transactionType", "RESOURCE_LOCAL");
-		p.put("hibernate.show_sql", "true");
-		p.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		entityManagerFactory = Persistence.createEntityManagerFactory("pilotoPersistenceUnit", p);
-	}
-
 }
