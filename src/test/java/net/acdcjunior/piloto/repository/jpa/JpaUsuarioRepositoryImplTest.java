@@ -10,8 +10,8 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import net.acdcjunior.piloto.domain.Funcao;
 import net.acdcjunior.piloto.domain.Usuario;
@@ -93,9 +93,9 @@ public class JpaUsuarioRepositoryImplTest {
 		List<Usuario> todosUsuarios = jpaUsuarioRepositoryImpl.findAllUsuarios();
 		// then
 		assertThat(todosUsuarios, hasSize(3));
-		assertThat(todosUsuarios, hasItem(usuario_1));
-		assertThat(todosUsuarios, hasItem(usuario_2));
-		assertThat(todosUsuarios, hasItem(usuario_3));
+		assertThat(todosUsuarios, hasItem(jpaUsuarioRepositoryImpl.findById(usuario_1.getId())));
+		assertThat(todosUsuarios, hasItem(jpaUsuarioRepositoryImpl.findById(usuario_2.getId())));
+		assertThat(todosUsuarios, hasItem(jpaUsuarioRepositoryImpl.findById(usuario_3.getId())));
 	}
 	
 	@Test
@@ -116,34 +116,14 @@ public class JpaUsuarioRepositoryImplTest {
 		jpaUsuarioRepositoryImpl.save(usuario);
 		emRule.getEntityManagerInjetado().getTransaction().commit();
 		// then
+		emRule.getEntityManagerInjetado().detach(usuario);
 		Usuario usuarioAposSalvar = jpaUsuarioRepositoryImpl.findById(usuario.getId());
-		assertThat(usuarioAposSalvar.getFuncoes(), hasSize(1));
-		assertThat(usuarioAposSalvar.getFuncoes(), hasItem(funcao));
-	}
-
-	
-	@Test
-	public void addFuncao() {
-		Usuario usuario = new Usuario();
-		usuario.setNome(Long.toString(new Date().getTime()));
-
-		Funcao funcao = new Funcao();
-		funcao.setNome(Long.toString(new Date().getTime()));
-
-		emRule.getEntityManagerInjetado().getTransaction().begin();
-		emRule.getEntityManagerInjetado().persist(usuario);
-		emRule.getEntityManagerInjetado().persist(funcao);
-		emRule.getEntityManagerInjetado().getTransaction().commit();
-
-		assertEquals(0, usuario.getFuncoes().size());
-
-		usuario.addFuncao(funcao);
-
-		emRule.getEntityManagerInjetado().getTransaction().begin();
-		emRule.getEntityManagerInjetado().merge(usuario);
-		emRule.getEntityManagerInjetado().getTransaction().commit();
-
-		assertEquals(1, usuario.getFuncoes().size());
+		Set<Funcao> funcoesAposSalvar = usuarioAposSalvar.getFuncoes();
+		assertThat(funcoesAposSalvar, hasSize(1));
+		for (Funcao f : funcoesAposSalvar) {
+			f.getId().equals(funcao.getId());
+			f.getNome().equals(funcao.getNome());
+		}
 	}
 
 }

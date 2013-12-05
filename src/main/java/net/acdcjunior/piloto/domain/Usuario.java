@@ -30,13 +30,4 @@ public class Usuario {
     public boolean addFuncao(Funcao funcao) { return funcoes.add(funcao); }
     public Set<Funcao> getFuncoes() { return funcoes; }
     
-    @Override
-    public boolean equals(Object o) {
-    	return o != null && o instanceof Usuario && ((Usuario)o).getId() == this.getId();
-    }
-    @Override
-    public int hashCode() {
-    	return this.getId();
-    }
-
 }
