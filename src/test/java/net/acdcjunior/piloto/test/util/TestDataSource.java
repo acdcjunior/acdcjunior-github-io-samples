@@ -1,4 +1,4 @@
-package net.acdcjunior.piloto.test;
+package net.acdcjunior.piloto.test.util;
 
 import java.net.URI;
 import java.net.URISyntaxException;

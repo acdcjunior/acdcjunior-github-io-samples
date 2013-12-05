@@ -7,7 +7,7 @@
 						http://www.springframework.org/schema/jdbc
 						http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-   	<bean id="pilotoDataSource" class="net.acdcjunior.piloto.test.TestDataSource">
+   	<bean id="pilotoDataSource" class="net.acdcjunior.piloto.test.util.TestDataSource">
    	</bean>
    	
    	<!--
