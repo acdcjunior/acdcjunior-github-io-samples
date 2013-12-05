@@ -13,26 +13,21 @@ import static org.junit.Assert.assertThat;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import net.acdcjunior.piloto.domain.Funcao;
 import net.acdcjunior.piloto.domain.Usuario;
 import net.acdcjunior.piloto.repository.UsuarioRepository;
-import net.acdcjunior.piloto.test.EntityManagerIntegrationTest;
+import net.acdcjunior.piloto.test.util.InjetarEntityManagerRule;
+import net.acdcjunior.piloto.test.util.InjetarEntityManagerRule.InjetarEntityManager;
 
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
-public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
+public class JpaUsuarioRepositoryImplTest {
 	
-	@Spy // usado para que o @InjectMocks funcione, pois ele soh injeta @Mock s ou @Spy s
-	EntityManager em = getEntityManagerDeTestes();
+	@Rule
+	public InjetarEntityManagerRule emRule = new InjetarEntityManagerRule(this);
 	
-	@InjectMocks
+	@InjetarEntityManager
 	UsuarioRepository jpaUsuarioRepositoryImpl = new JpaUsuarioRepositoryImpl();
 	
 	@Test
@@ -41,9 +36,9 @@ public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
 		Usuario usuario = new Usuario();
 		usuario.setNome(Long.toString(new java.util.Date().getTime()));
 		// when
-		em.getTransaction().begin();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
 		jpaUsuarioRepositoryImpl.save(usuario);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 		// then
 		Integer idAposSalvar = usuario.getId();
 		assertThat(idAposSalvar, is(notNullValue()));
@@ -56,9 +51,9 @@ public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
 		String novoNome = Long.toString(new java.util.Date().getTime());
 		usuarioPreExistente.setNome(novoNome);
 		// when
-		em.getTransaction().begin();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
 		jpaUsuarioRepositoryImpl.save(usuarioPreExistente);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 		// then
 		/* Apenas para garantir, usamos o detach() pra remover o 
 		 * objeto "usuarioPreExistente" da sessao, o que garante que o
@@ -66,7 +61,7 @@ public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
 		 * o findById trarah o "usuarioPreExistente" mesmo, o que nao
 		 * estah errado, mas para nao deixar duvida nenhuma, usamos o detach()).
 		 */
-		em.detach(usuarioPreExistente);
+		emRule.getEntityManagerInjetado().detach(usuarioPreExistente);
 		Usuario usuarioAposSalvar = jpaUsuarioRepositoryImpl.findById(1);
 		assertEquals(novoNome, usuarioAposSalvar.getNome());
 	}
@@ -111,15 +106,15 @@ public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
 		
 		Funcao funcao = new Funcao();
 		funcao.setNome("Nome Qualquer");
-		em.getTransaction().begin();
-		em.persist(funcao);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
+		emRule.getEntityManagerInjetado().persist(funcao);
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 		
 		usuario.addFuncao(funcao);
 		// when
-		em.getTransaction().begin();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
 		jpaUsuarioRepositoryImpl.save(usuario);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 		// then
 		Usuario usuarioAposSalvar = jpaUsuarioRepositoryImpl.findById(usuario.getId());
 		assertThat(usuarioAposSalvar.getFuncoes(), hasSize(1));
@@ -135,18 +130,18 @@ public class JpaUsuarioRepositoryImplTest extends EntityManagerIntegrationTest {
 		Funcao funcao = new Funcao();
 		funcao.setNome(Long.toString(new Date().getTime()));
 
-		em.getTransaction().begin();
-		em.persist(usuario);
-		em.persist(funcao);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
+		emRule.getEntityManagerInjetado().persist(usuario);
+		emRule.getEntityManagerInjetado().persist(funcao);
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 
 		assertEquals(0, usuario.getFuncoes().size());
 
 		usuario.addFuncao(funcao);
 
-		em.getTransaction().begin();
-		em.merge(usuario);
-		em.getTransaction().commit();
+		emRule.getEntityManagerInjetado().getTransaction().begin();
+		emRule.getEntityManagerInjetado().merge(usuario);
+		emRule.getEntityManagerInjetado().getTransaction().commit();
 
 		assertEquals(1, usuario.getFuncoes().size());
 	}
