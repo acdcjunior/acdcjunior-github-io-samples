@@ -9,10 +9,8 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<versao.springx>3.0.6.RELEASE</versao.springx>
 		<versao.spring>3.2.5.RELEASE</versao.spring>
 		<versao.hibernate>4.2.7.SP1</versao.hibernate>
-		<versao.hibernatex>3.6.9.Final</versao.hibernatex>
 	</properties>
 
 	<dependencies>
