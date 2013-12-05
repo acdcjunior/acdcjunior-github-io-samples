@@ -12,3 +12,11 @@ Tecnologias usadas:
 - H2 como banco embarcado de testes
 - JUnit
 - Mockito
+- Spring-Test
+
+
+O objetivo da aplicacao eh fornecer infraestrutura de exemplo para:
+
+- Controladores Spring MVC
+- Entidades e queries do JPA 2.0
+- Testes de controladores e de repositorios (com banco embarcado)
