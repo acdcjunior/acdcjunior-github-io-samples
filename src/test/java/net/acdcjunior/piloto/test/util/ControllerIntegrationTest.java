@@ -1,6 +1,5 @@
 package net.acdcjunior.piloto.test.util;
 
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,11 +17,8 @@ public abstract class ControllerIntegrationTest {
     @Autowired
     private WebApplicationContext wac;
     
-    protected MockMvc mockMvc;
-
-    @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
+    protected MockMvc buildMockMvc() {
+		return MockMvcBuilders.webAppContextSetup(this.wac).build();
+	}
 
 }
