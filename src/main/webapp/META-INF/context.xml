@@ -1,21 +1,49 @@
 <Context>
-	<!-- Dados do banco de PRODUCAO! -->
-	<!-- Para detalhes dos atributos abaixo, ver: http://tomcat.apache.org/tomcat-7.0-doc/jndi-resources-howto.html -->
-	<Resource
-		auth="Container"
-	    name="jdbc/pilotoDataSource"
-	    type="javax.sql.DataSource"
-	    driverClassName="org.h2.Driver"
-	    url="jdbc:h2:bancoH2piloto" 
-	    username="sa"
-	    password=""
-   	    maxActive="8"
-	    maxIdle="4"
-        removeAbandoned="true"
-        removeAbandonedTimeout="20"
-        logAbandoned="true"
-	/>
+	<!--
+	Quando este projeto for deployado em um tomcat, o datasource usado serah o
+	que foi definido pelo JNDI abaixo.
+	-->
+	<ResourceLink global="jdbc/pilotoDataSource" name="jdbc/pilotoDataSource" type="javax.sql.DataSource"/>
 	
-	<!-- Usar linha abaixo se o datasource for definido no tomcat -->
-	<!-- <ResourceLink global="jdbc/jdbc/pilotoDataSource" name="jdbc/jdbc/pilotoDataSource" type="javax.sql.DataSource"/> -->
+	
+	
+	<!--
+	Para defini-lo, vah em
+	
+	$CATALINA_HOME/conf/server.xml (onde $CATALINA_HOME eh a pasta do seu tomcat)
+	
+	Localize o no:
+	
+	    <GlobalNamingResources>
+	    	...
+	    </GlobalNamingResources>
+    
+    e adicione um context la, como, por exemplo:
+    
+	    <GlobalNamingResources>
+	       	...(outros Resources)...
+	    	
+	       	<Resource
+				auth="Container"
+			    name="jdbc/pilotoDataSource"
+			    type="javax.sql.DataSource"
+			    driverClassName="org.h2.Driver"
+			    url="jdbc:h2:bancoH2piloto" 
+			    username="sa"
+			    password=""
+		   	    maxActive="8"
+			    maxIdle="4"
+		        removeAbandoned="true"
+		        removeAbandonedTimeout="20"
+		        logAbandoned="true"
+			/>
+		</GlobalNamingResources>
+		
+	Desta forma, seu tomcat de testes pode apontar para um banco, enquanto o de producao apontarah
+	para outro.
+	
+	Note que, para facilitar, o tomcat que sobe ao usar "mvn tomcat7:run" nao usa este context.xml,
+	e sim o definido em "src/test/resources/tomcat-run/tomcat-run_context.xml" 
+  
+   -->
 </Context>
