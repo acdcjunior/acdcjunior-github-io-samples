@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
 <html>
 <head>
 <title>Novo Usuario</title>
@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Novo Usuario</h1>
-	<form action="/usuarios" method="post">
+	<form action="<c:url value = '/usuarios' />" method="post">
 		Nome: <input name="nome" /> <input type="submit" />
 	</form>
 </body>

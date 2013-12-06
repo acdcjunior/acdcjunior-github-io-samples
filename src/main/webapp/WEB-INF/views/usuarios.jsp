@@ -22,5 +22,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<a href="<c:url value = '/usuarios/novo' />">[NOVO USUARIO]</a>
 </body>
 </html>

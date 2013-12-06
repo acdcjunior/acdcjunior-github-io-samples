@@ -33,7 +33,7 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
-        return "redirect:usuarios";
+        return "redirect:/usuarios";
     }
     
 }
