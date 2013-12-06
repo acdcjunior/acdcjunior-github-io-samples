@@ -1,16 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Piloto - Usuarios</title>
+<title><spring:message code="titulo_aplicacao" /> - <spring:message code="usuario" text="Usuario" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Usuario Cadastrados</h1>
-	<table>
+	<h1><spring:message code="usuarios_cadastrados" text="Usuarios Cadastrados" /></h1>
+	<table border="1">
 		<thead>
 			<tr>
-				<td>ID</td>
-				<td>Nome</td>
+				<td><spring:message code="id" /></td>
+				<td><spring:message code="nome" /></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,6 +25,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="<c:url value = '/usuarios/novo' />">[NOVO USUARIO]</a>
+	<br>
+	<a href="<c:url value = '/usuarios/novo' />">[<spring:message code="usuario_novo" />]</a>
 </body>
 </html>
