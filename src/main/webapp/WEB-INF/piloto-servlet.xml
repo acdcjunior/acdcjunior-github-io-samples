@@ -11,11 +11,17 @@
 					    http://www.springframework.org/schema/jee
 					    http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 					    http://www.springframework.org/schema/tx
-					    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-    ">
+					    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    
+    <!-- INICIO :: CONTEXTO DA APLICACAO, LOCALIZAR E INICIAR BEANS -->
 
     <context:annotation-config/>
     <context:component-scan base-package="net.acdcjunior.piloto"/>
+    
+    <!-- FIM :: CONTEXTO DA APLICACAO, LOCALIZAR E INICIAR BEANS -->
+    
+    
     
     <!-- INICIO :: TECNOLOGIA DA VIEW -->
 
@@ -27,6 +33,7 @@
     <!-- FIM :: TECNOLOGIA DA VIEW -->
     
     
+    
     <!-- INICIO :: BANCO DE DADOS E TRANSACOES -->
     
     <!-- O arquivo abaixo apenas declara o bean de id "dataSource".
@@ -34,7 +41,6 @@
     separado para que ele possa ser sobrescrito no ambiente de testes. -->
     <import resource="classpath:piloto-datasource.xml"/>
     
-
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="pilotoDataSource"/>
     </bean>
@@ -47,8 +53,14 @@
     
     <!-- FIM :: BANCO DE DADOS E TRANSACOES -->
     
+    
+    
+    <!-- INICIO :: MESSAGE.PROPERTIES RESOURCE BUNDLE -->
+    
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="message" />
 	</bean>
+	
+	<!-- FIM :: MESSAGE.PROPERTIES RESOURCE BUNDLE -->
 
 </beans>

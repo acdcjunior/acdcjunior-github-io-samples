@@ -13,7 +13,13 @@
 					    http://www.springframework.org/schema/tx
 					    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<!-- Pega o datasource pelo nome JNDI dele. O data source foi definido no META-INF/context.xml -->
+	<!--
+	Pega o datasource pelo nome JNDI dele.
+	O datasource eh o definido no "src/main/webapp/META-INF/context.xml"
+	
+	Se estiver rodando via "mvn tomcat7:run" o datasource usado eh o de
+	"src/test/resources/tomcat-run/context.xml"
+	 -->
     <jee:jndi-lookup id="pilotoDataSource" jndi-name="java:/comp/env/jdbc/pilotoDataSource" expected-type="javax.sql.DataSource"/>
 
 </beans>

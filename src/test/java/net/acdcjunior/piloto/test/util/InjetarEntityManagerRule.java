@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.apache.naming.java.javaURLContextFactory;
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
@@ -24,7 +25,10 @@ public class InjetarEntityManagerRule implements MethodRule {
 	@Retention(RetentionPolicy.RUNTIME)
 	public static @interface InjetarEntityManager { }
 	
+	private static final String URL_DATA_SOURCE = "java:/comp/env/jdbc/pilotoDataSource";
+	private static final String NOME_PERSISTENCE_UNIT = "pilotoPersistenceUnit";
 	private static final String NOME_CAMPO_ENTITYMANAGER = "em";
+	private static final String URL_H2_EM_MEMORIA = "jdbc:h2:mem:bancoDeTestesEmMemoria;INIT=RUNSCRIPT FROM 'classpath:sql/esquema.sql'\\;RUNSCRIPT FROM 'classpath:sql/dados.sql'\\;";
 	
 	private static EntityManagerFactory entityManagerFactory;
 	
@@ -50,10 +54,7 @@ public class InjetarEntityManagerRule implements MethodRule {
 			System.out.println("~~~~ :: EMF --> "+entityManagerFactory);
 			if (entityManagerFactory == null) {
 				realizarBindJndiDoDataSourceDeTestes();
-				
-				String nomePersistenceUnit = TestProperties.getProperty("EntityManagerIntegrationTest.nomePersistenceUnit");
-				entityManagerFactory = Persistence.createEntityManagerFactory(nomePersistenceUnit);
-				
+				entityManagerFactory = Persistence.createEntityManagerFactory(NOME_PERSISTENCE_UNIT);
 				desfazerBindJndiDoDataSourceDeTestes();
 			}
 		} catch (NamingException e) {
@@ -71,14 +72,20 @@ public class InjetarEntityManagerRule implements MethodRule {
 		ic.createSubcontext("java:/comp/env");
 		ic.createSubcontext("java:/comp/env/jdbc");
 		
-		String nomeDataSource = TestProperties.getProperty("EntityManagerIntegrationTest.nomeDataSource");
-		ic.bind("java:/comp/env/jdbc/"+nomeDataSource, new TestDataSource());
+		ic.bind(URL_DATA_SOURCE, criarDS());
 	}
 
+	private static JdbcDataSource criarDS() {
+		JdbcDataSource ds = new JdbcDataSource();
+		ds.setURL(URL_H2_EM_MEMORIA);
+		ds.setUser("sa");
+		ds.setPassword("");
+		return ds;
+	}
+	
 	private static void desfazerBindJndiDoDataSourceDeTestes() throws NamingException {
 		InitialContext ic = new InitialContext();
-		String nomeDataSource = TestProperties.getProperty("EntityManagerIntegrationTest.nomeDataSource");
-		ic.unbind("java:/comp/env/jdbc/"+nomeDataSource);
+		ic.unbind(URL_DATA_SOURCE);
 	}
 
 }

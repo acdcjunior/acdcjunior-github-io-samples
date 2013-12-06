@@ -148,6 +148,9 @@
 				<version>2.2</version>
 				<configuration>
 					<contextFile>${basedir}/src/test/resources/tomcat-run/context.xml</contextFile>
+			      	<additionalClasspathDirs>
+        				<additionalClasspathDir>${basedir}/src/test/resources/sql</additionalClasspathDir>
+      				</additionalClasspathDirs>
 				</configuration>
 			</plugin>
 			<!-- FIM TOMCAT7:RUN -->

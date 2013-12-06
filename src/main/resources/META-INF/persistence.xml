@@ -21,7 +21,17 @@
 		<mapping-file>META-INF/jpql/Usuario.xml</mapping-file>
 		
 		<properties>
-			<property name="hibernate.ejb.cfgfile" value="hibernate.cfg.xml"/>
+			<!-- Echo all executed SQL to stdout -->
+        	<property name="hibernate.show_sql" value="true" />
+        
+       		<!--
+       		Esta propriedade define o SQL dialect usado.
+       		
+       		Note que o valor aqui deve ser o do banco de producao, mas serah usado
+       		tambem como dialeto  do banco de testes (que serah o H2, provavelmente diferente
+       		do banco de producao). Isto nao deve gerar erros, desde que o SQL usado
+       		se mantenha padronizado. -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
 		</properties>
 	</persistence-unit>
 </persistence>
