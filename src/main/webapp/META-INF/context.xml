@@ -15,4 +15,7 @@
         removeAbandonedTimeout="20"
         logAbandoned="true"
 	/>
+	
+	<!-- Usar linha abaixo se o datasource for definido no tomcat -->
+	<!-- <ResourceLink global="jdbc/jdbc/pilotoDataSource" name="jdbc/jdbc/pilotoDataSource" type="javax.sql.DataSource"/> -->
 </Context>
