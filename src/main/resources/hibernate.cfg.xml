@@ -5,12 +5,16 @@
 
 <hibernate-configuration>
 
+	<!-- Dados do banco de PRODUCAO -->
     <session-factory>
-        <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
-
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">false</property>
+        
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        
+        <!-- Naturalmente, o dialeto acima e a configuracao abaixo devem ser alterados para producao -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
     </session-factory>
 
 </hibernate-configuration>
