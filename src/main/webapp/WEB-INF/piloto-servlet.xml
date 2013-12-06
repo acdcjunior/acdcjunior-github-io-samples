@@ -25,7 +25,8 @@
     <!-- O arquivo abaixo apenas declara o bean de id "dataSource".
     A declaracao poderia estar aqui, neste arquivo, mas foi movida para um arquivo
     separado para que ele possa ser sobrescrito no ambiente de testes. -->
-    <import resource="classpath:WEB-INF/piloto-datasource.xml"/>
+    <import resource="classpath:piloto-datasource.xml"/>
+    
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="pilotoDataSource"/>
