@@ -1,4 +1,4 @@
-package net.acdcjunior.piloto.test.util;
+package net.acdcjunior.piloto.test;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

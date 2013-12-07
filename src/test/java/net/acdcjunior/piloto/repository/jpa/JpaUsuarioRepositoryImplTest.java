@@ -16,8 +16,8 @@ import java.util.Set;
 import net.acdcjunior.piloto.domain.Funcao;
 import net.acdcjunior.piloto.domain.Usuario;
 import net.acdcjunior.piloto.repository.UsuarioRepository;
-import net.acdcjunior.piloto.test.util.InjetarEntityManagerRule;
-import net.acdcjunior.piloto.test.util.InjetarEntityManagerRule.InjetarEntityManager;
+import net.acdcjunior.piloto.test.InjetarEntityManagerRule;
+import net.acdcjunior.piloto.test.InjetarEntityManagerRule.InjetarEntityManager;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class JpaUsuarioRepositoryImplTest {
 	public void save__deve_persistir_usuario_novo() {
 		// given
 		Usuario usuario = new Usuario();
-		usuario.setNome(Long.toString(new java.util.Date().getTime()));
+		usuario.setNome(System.currentTimeMillis()+"");
 		// when
 		emRule.getEntityManagerInjetado().getTransaction().begin();
 		jpaUsuarioRepositoryImpl.save(usuario);
@@ -48,7 +48,7 @@ public class JpaUsuarioRepositoryImplTest {
 	public void save__deve_atualizar_usuario_pre_existente() {
 		// given
 		Usuario usuarioPreExistente = jpaUsuarioRepositoryImpl.findById(1);
-		String novoNome = Long.toString(new java.util.Date().getTime());
+		String novoNome = System.currentTimeMillis()+"";
 		usuarioPreExistente.setNome(novoNome);
 		// when
 		emRule.getEntityManagerInjetado().getTransaction().begin();

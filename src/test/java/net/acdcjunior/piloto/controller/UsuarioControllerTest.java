@@ -3,7 +3,7 @@ package net.acdcjunior.piloto.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import net.acdcjunior.piloto.test.util.ControllerIntegrationTest;
+import net.acdcjunior.piloto.test.ControllerIntegrationTest;
 
 import org.junit.Test;
 

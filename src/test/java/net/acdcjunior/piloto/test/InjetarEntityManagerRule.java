@@ -1,4 +1,4 @@
-package net.acdcjunior.piloto.test.util;
+package net.acdcjunior.piloto.test;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
