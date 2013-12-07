@@ -39,8 +39,10 @@
 			/>
 		</GlobalNamingResources>
 		
-	Desta forma, seu tomcat de testes pode apontar para um banco, enquanto o de producao apontarah
-	para outro.
+	(Nao esqueca de colocar o .jar do driver do banco na pasta \lib do tomcat!)
+		
+	Com uma configuracao no estilo acima, portanto, seu tomcat de testes pode apontar para um
+	banco, enquanto o de producao apontarah	para outro.
 	
 	Note que, para facilitar, o tomcat que sobe ao usar "mvn tomcat7:run" nao usa este context.xml,
 	e sim o definido em "src/test/resources/tomcat-run/tomcat-run_context.xml" 
