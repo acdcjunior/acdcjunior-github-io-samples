@@ -69,8 +69,7 @@
 			<version>${versao.tiles}</version>
 		</dependency>
 		<!-- FIM: View - Tiles 3 -->
-	    
-
+		
 		<!-- INICIO: Taglibs -->
 		<!--
 			Apenas tentando fazer o eclipse parar de reclamar e poder validar o uso de
@@ -129,6 +128,17 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- FIM: Dependencias de TESTES -->
+		
+		<!-- Tiles 3, commons-digest e o xerces davam alguma especie de
+		incompatibilidade com a minha versao de JVM (usavam uma versao antiga do xerces ou
+		algo do tipo) quando eu dava "mvn cobertura:cobertura". Adicionando a dependencia
+		abaixo fez o problema sumir. -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.11.0</version>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 
