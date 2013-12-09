@@ -13,24 +13,26 @@ Aplicacao "Piloto" mostrando o uso de Spring MVC + JPA + Mockito
 Coisas importantes:
 - `mvn cobertura:cobertura` gera o relatorio de cobertura de testes em `/target/site/cobertura/index.html`.
 - Edicoes em paginas `.jsp` vao ser refletidas imediatamente na aplicacao sem necessidade de reiniciar.
-- Edicoes em classes `.java` ainda requerem restart.
+- Edicoes em classes `.java` ainda requerem restart! (Maven nao recompila os `.java` assim que eles sao editados! Para conseguir que as edicoes em classes repercutam automaticamente, execute o projeto via um tomcat do eclipse, como sempre se fez.)
 - O `mvn tomcat7:run` utiliza o banco de testes conforme scripts em `src/test/resources/sql`. O banco criado eh o `bancoH2tomcatRun.h2.db` na pasta do projeto -- note que ele eh apagado/recriado a cada execucao.
 - Os testes tambem utilizam os scripts acima, mas eles criam um banco em memoria que eh instantaneamente "apagado".
 
-##Tecnologias usadas:
+##Overview de tecnologias usadas:
 
 - Maven
 - Spring e Spring MVC 3.2.5
-- JSP + Tiles 3 como View Technology
-- JPA 2.0
-- Hibernate 4.2.7.SP1 como implementacao
+- JSP + Tiles 3.0.3 como View Technology
+- Persistencia
+  - JPA 2.0
+  - Hibernate 4.2.7.SP1 como implementacao JPA
+  - H2 como banco de exemplo e de testes
 - Testes
-  - H2 como banco embarcado de testes
-  - JUnit
-  - Mockito
+  - JUnit 4.11
+  - Mockito 1.9.5 + Hamcrest matchers 1.3
   - Spring-Test
-  - Relatorio de cobertura de testes com Cobertura
+  - Relatorio de cobertura de testes com Cobertura 2.6
 
+##Objetivos/filosofia
 
 O objetivo da aplicacao eh fornecer infraestrutura de exemplo para:
 
@@ -38,6 +40,6 @@ O objetivo da aplicacao eh fornecer infraestrutura de exemplo para:
 - Entidades e queries do JPA 2.0
 - Testes de controladores e de repositorios (com banco embarcado)
 
+##Outros/detalhes do uso
 
---
-Como nao eh possivel ter <link rel> no <body>, os nomes dos arquivos css sao definidos no tiles.xml, junto com a view.
+- Como nao eh possivel ter `<link rel="stylesheet">` no `<body>`, os nomes dos arquivos css sao definidos no `tiles.xml`, junto com a view.
