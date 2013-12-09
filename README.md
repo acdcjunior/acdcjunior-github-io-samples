@@ -8,9 +8,10 @@ Aplicacao "Piloto" mostrando o uso de Spring MVC + JPA + Mockito
 - Baixe a aplicacao (pegue o **[ZIP aqui](https://github.com/acdcjunior/spring-mvc-jpa-mockito-piloto/archive/master.zip)**, ou via `git clone`)
 - Vah na pasta e digite `mvn tomcat7:run`
 - Abra a URL **http://127.0.0.1:8080/piloto**
-- Pronto.
 
-Coisas importantes:
+Pronto!
+
+###Detalhes pequenos, mas importantes:
 - `mvn cobertura:cobertura` gera o relatorio de cobertura de testes em `/target/site/cobertura/index.html`.
 - Edicoes em paginas `.jsp` vao ser refletidas imediatamente na aplicacao sem necessidade de reiniciar.
 - Edicoes em classes `.java` ainda requerem restart! (Maven nao recompila os `.java` assim que eles sao editados! Para conseguir que as edicoes em classes repercutam automaticamente, execute o projeto via um tomcat do eclipse, como sempre se fez.)
