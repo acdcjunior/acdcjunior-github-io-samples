@@ -1,0 +1,22 @@
+#menu ul {
+    list-style: none;
+}
+#menu .sembarra {
+	border-left-color: white;
+}
+#menu li {
+	border-left: 2px solid black;
+	margin-left: 5px;
+	padding-left: 10px;
+	/* Duas linhas abaixo, ver; http://stackoverflow.com/a/6545033/1850609 */
+	display: inline; 
+	zoom: 1;
+}
+#menu a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #0099FF;
+}
+#menu a:hover {
+	text-decoration: underline;
+}

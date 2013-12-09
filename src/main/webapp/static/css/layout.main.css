@@ -1,0 +1,8 @@
+#header,#body,#footer {
+	margin: auto;
+	width: 80%;
+	border: 1px dashed #0099FF;
+}
+#footerimg {
+	width: 100%;
+}

@@ -1,0 +1,6 @@
+.usuario {
+	padding: 20px;
+}
+.usuario table,.usuario td,.usuario tr {
+	border: 1px solid black;
+}
