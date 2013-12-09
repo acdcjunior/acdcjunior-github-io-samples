@@ -1,8 +1,14 @@
 package net.acdcjunior.piloto.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.hasKey;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import net.acdcjunior.piloto.test.ControllerIntegrationTest;
 
 import org.junit.Test;
@@ -40,6 +46,7 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 			          .andDo(print())
 			    	  .andExpect(status().isOk())
 			    	  .andExpect(view().name("usuarios-string"))
+			    	  .andExpect(model().attributeExists("variavelString"))
 			    	  .andExpect(forwardedUrl("/WEB-INF/layout/layout.jsp"));
 	}
 	
@@ -49,7 +56,9 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 			          .andDo(print())
 			    	  .andExpect(status().isOk())
 			    	  .andExpect(view().name("usuarios-map"))
+			    	  .andExpect(model().attribute("variavelMap", hasKey("um")))
+			    	  .andExpect(model().attribute("variavelMap", hasKey("dois")))
 			    	  .andExpect(forwardedUrl("/WEB-INF/layout/layout.jsp"));
 	}
-	
+
 }
