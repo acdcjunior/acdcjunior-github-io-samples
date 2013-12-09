@@ -8,9 +8,10 @@
 	border-left: 2px solid black;
 	margin-left: 5px;
 	padding-left: 10px;
-	/* Duas linhas abaixo, ver; http://stackoverflow.com/a/6545033/1850609 */
-	display: inline; 
-	zoom: 1;
+	
+	display: inline;
+	/* Duas linha abaixo, ver; http://stackoverflow.com/questions/6544852/#comment18269482_6545033 */ 
+	*zoom: 1;
 }
 #menu a {
 	font-weight: bold;
