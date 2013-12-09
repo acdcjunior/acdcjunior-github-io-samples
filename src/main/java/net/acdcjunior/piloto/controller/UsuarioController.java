@@ -21,19 +21,19 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
     
     @RequestMapping("/usuarios")
-    public String usuarios(Model model) {
+    public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.findAllUsuarios());
         return "usuarios";
     }
 
     @RequestMapping(value = "/usuarios/novo", method = RequestMethod.GET)
-    public String createUsuario(Model model) {
+    public String novoUsuario(Model model) {
         return "usuarios-novo";
     }
 
     @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
     @Transactional
-    public String createUsuario(Model model, String nome) {
+    public String criarUsuario(Model model, String nome) {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
