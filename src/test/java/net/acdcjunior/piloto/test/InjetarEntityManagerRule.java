@@ -51,14 +51,13 @@ public class InjetarEntityManagerRule implements MethodRule {
 	
 	private void inicializarEntityManagerFactory() {
 		try {
-			System.out.println("~~~~ :: EMF --> "+entityManagerFactory);
 			if (entityManagerFactory == null) {
 				realizarBindJndiDoDataSourceDeTestes();
 				entityManagerFactory = Persistence.createEntityManagerFactory(NOME_PERSISTENCE_UNIT);
 				desfazerBindJndiDoDataSourceDeTestes();
 			}
 		} catch (NamingException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 
