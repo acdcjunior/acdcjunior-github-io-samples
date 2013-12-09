@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="base.definition" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title.key" value="layout.title" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+		<put-list-attribute name="arquivos_css">
+			<add-attribute value="layout.main.css" />
+			<add-attribute value="layout.menu.css" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="usuarios" extends="base.definition">
+		<put-attribute name="title.key" value="usuario.cadastrados" />
+		<put-attribute name="body" value="/WEB-INF/views/usuarios.jsp" />
+		
+		<!-- inherit="true" herda os valores do base.definition (no caso, layout.main.css, etc) -->
+		<put-list-attribute inherit="true" name="arquivos_css">
+			<add-attribute value="usuario.um.css" />
+			<add-attribute value="usuario.dois.css" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="usuarios-novo" extends="base.definition">
+		<put-attribute name="title.key" value="usuario.novo" />
+		<put-attribute name="body" value="/WEB-INF/views/usuarios.novo.jsp" />
+	</definition>
+	
+	<definition name="usuarios-string" extends="base.definition">
+		<put-attribute name="title.key" value="usuario.string.title" />
+		<put-attribute name="body" value="/WEB-INF/views/usuarios.string.jsp" />
+		
+		<!-- sem inherit="true", soh vale o que for definido aqui -->
+		<put-list-attribute name="arquivos_css">
+			<add-attribute value="outro.css" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="usuarios-map" extends="base.definition">
+		<put-attribute name="title.key" value="usuario.map" />
+		<put-attribute name="body" value="/WEB-INF/views/usuarios.map.jsp" />
+	</definition>
+
+</tiles-definitions>

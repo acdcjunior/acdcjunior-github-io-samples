@@ -14,14 +14,16 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 		buildMockMvc().perform(get("/usuarios"))
                     .andDo(print())
                 	.andExpect(status().isOk())
-                	.andExpect(forwardedUrl("/WEB-INF/views/usuarios.jsp"));
+                	.andExpect(view().name("usuarios"))
+                	.andExpect(forwardedUrl("/WEB-INF/layout/layout.jsp"));
 	}
 	
 	@Test
 	public void createUsuario_Model__deve_trazer_200_ok() throws Exception {
 		buildMockMvc().perform(get("/usuarios/novo"))
         			.andExpect(status().isOk())
-        			.andExpect(forwardedUrl("/WEB-INF/views/usuario-novo.jsp"));
+                	.andExpect(view().name("usuarios-novo"))
+                	.andExpect(forwardedUrl("/WEB-INF/layout/layout.jsp"));
 	}
 
 	@Test

@@ -1,5 +1,8 @@
 package net.acdcjunior.piloto.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.acdcjunior.piloto.domain.Usuario;
 import net.acdcjunior.piloto.repository.UsuarioRepository;
 
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UsuarioController {
@@ -24,7 +28,7 @@ public class UsuarioController {
 
     @RequestMapping(value = "/usuarios/novo", method = RequestMethod.GET)
     public String createUsuario(Model model) {
-        return "usuario-novo";
+        return "usuarios-novo";
     }
 
     @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
@@ -34,6 +38,19 @@ public class UsuarioController {
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
         return "redirect:/usuarios";
+    }
+    
+    @RequestMapping("/usuarios-string")  
+    public ModelAndView variavelString() {  
+        return new ModelAndView("usuarios-string", "variavelString", "Exemplo de como passar variavel!");  
+    }
+    
+    @RequestMapping("/usuarios-map")  
+    public ModelAndView variavelMap() {
+    	Map<String, String> model = new HashMap<>();
+    	model.put("um", "111111");
+    	model.put("dois", "222222");
+        return new ModelAndView("usuarios-map", "variavelMap", model);  
     }
     
 }
