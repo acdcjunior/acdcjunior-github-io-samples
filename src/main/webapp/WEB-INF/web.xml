@@ -4,19 +4,17 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     version="2.5">
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/piloto-applicationContext.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
 	<!--
 	Mapeia o servlet spring com o nome "piloto".
 	
+	O DispatcherServlet tem uma serie de propriedades, dentre elas existe a "contextConfigLocation",
+	que eh a localizacao de um arquivo .xml que define as propriedades do applicationContext do Spring,
+	(como onde encontrar os beans, o entity manager, etc).
+	O padrao dessa propriedade eh o nome do servlet. Portanto, as configuracoes do contexto da aplicacao
+	estarao no arquivo "piloto-servlet.xml".
+
 	O DispatcherServlet eh o "front controller", o ponto de entrada de todas as requisicoes
-	para a sua aplicacao.
+	para a aplicacao Spring MVC.
 	-->
     <servlet>
         <servlet-name>piloto</servlet-name>

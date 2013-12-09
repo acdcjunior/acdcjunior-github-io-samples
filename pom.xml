@@ -11,6 +11,7 @@
 	<properties>
 		<versao.spring>3.2.5.RELEASE</versao.spring>
 		<versao.hibernate>4.2.7.SP1</versao.hibernate>
+		<versao.tiles>3.0.3</versao.tiles>
 	</properties>
 
 	<dependencies>
@@ -48,13 +49,27 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
+			<version>1.5.8</version>
 		</dependency>
 	    <dependency>
 	    	<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2</version>
 	    </dependency>
+	    
+	    <!-- INICIO: View - Tiles 3 -->
+	    <dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${versao.tiles}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>${versao.tiles}</version>
+		</dependency>
+		<!-- FIM: View - Tiles 3 -->
+	    
 
 		<!-- INICIO: Taglibs -->
 		<!--
@@ -73,12 +88,10 @@
 			<version>1.1.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
 		<!-- FIM: Taglibs -->
 		
 
 		<!-- INICIO: Dependencias de TESTES -->
-		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -109,14 +122,12 @@
 			<version>1.3</version>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency> <!-- Utilizado no bind JNDI da InjetarEntityManagerRule -->
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>catalina</artifactId>
 			<version>6.0.18</version>
 			<scope>test</scope>
 		</dependency>
-		
 		<!-- FIM: Dependencias de TESTES -->
 
 	</dependencies>
