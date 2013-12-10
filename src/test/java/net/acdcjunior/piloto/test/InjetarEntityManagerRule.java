@@ -5,6 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,6 +19,9 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.util.ReflectionUtils.FieldCallback;
+import org.springframework.util.ReflectionUtils.FieldFilter;
 
 public class InjetarEntityManagerRule implements MethodRule {
 	
@@ -91,26 +95,41 @@ public class InjetarEntityManagerRule implements MethodRule {
 
 class InjetorDeEntityManager {
 	
-	public static void injetarCamposAnotados(Object instanciaDaClasseDeTestes, String nomeCampo, EntityManager valorCampo) {
+	public static void injetarCamposAnotados(Object instanciaDaClasseDeTestes,
+											 String nomeCampo,
+											 EntityManager entityManagerAInjetar) {
+		
 		Class<?> clazz = instanciaDaClasseDeTestes.getClass();
 		for (Field f : clazz.getDeclaredFields()) {
 			if (f.isAnnotationPresent(InjetarEntityManagerRule.InjetarEntityManager.class)) {
-				injetar(instanciaDaClasseDeTestes, f, nomeCampo, valorCampo);
+				injetar(instanciaDaClasseDeTestes, f, nomeCampo, entityManagerAInjetar);
 			}
 		}
+		
 	}
 
-	private static void injetar(Object instanciaDaClasseDeTestes, Field f, String nomeCampo, EntityManager valorCampo) {
-		Object instanciaAInjetar = getFieldValue(f, instanciaDaClasseDeTestes);
-		Field fi = null;
-		try {
-			fi = instanciaAInjetar.getClass().getDeclaredField(nomeCampo);
-			setFieldValue(fi, instanciaAInjetar, valorCampo);
-		} catch (NoSuchFieldException e) {
-			// nao faz nada, campo nao existe aas vezes, mesmo
-		} catch (SecurityException e) {
-			throw new RuntimeException(e);
-		}
+	private static void injetar(final Object instanciaDaClasseDeTestes,
+								final Field f,
+								final String nomeCampo,
+								final EntityManager entityManagerAInjetar) {
+		
+		final Object instanciaDaClasseSobTestes = getFieldValue(f, instanciaDaClasseDeTestes);
+		Class<?> classeSobTestes = instanciaDaClasseSobTestes.getClass();
+			
+		ReflectionUtils.doWithFields(classeSobTestes,
+			new FieldCallback() {
+				@Override
+				public void doWith(Field f) throws IllegalArgumentException, IllegalAccessException {
+					setFieldValue(f, instanciaDaClasseSobTestes, entityManagerAInjetar);
+				}
+			}, new FieldFilter() {
+				@Override public boolean matches(Field field) {
+					boolean campoNaoEhStatic = !Modifier.isStatic(field.getModifiers());
+					boolean campoTemNomeEsperado = field.getName().equals(nomeCampo);
+					return campoNaoEhStatic && campoTemNomeEsperado;
+				}
+			}
+		);
 	}
 
 	private static void setFieldValue(Field f, Object instancia, Object valor) {
@@ -119,22 +138,18 @@ class InjetorDeEntityManager {
 			f.setAccessible(true);
 			f.set(instancia, valor);
 			f.setAccessible(acessibilidadeAnterior);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
+		} catch (IllegalAccessException e) { throw new RuntimeException(e); }
 	}
 
 	private static Object getFieldValue(Field f, Object instancia) {
-		Object fieldValue = null;
 		try {
 			boolean acessibilidadeAnterior = f.isAccessible();
 			f.setAccessible(true);
-			fieldValue = f.get(instancia);
+			Object fieldValue = f.get(instancia);
 			f.setAccessible(acessibilidadeAnterior);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return fieldValue;
+			return fieldValue;
+		} catch (IllegalAccessException e) { throw new RuntimeException(e); }
+		
 	}
 	
 }
