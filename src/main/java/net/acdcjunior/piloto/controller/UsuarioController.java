@@ -22,7 +22,7 @@ public class UsuarioController {
     
     @RequestMapping("/usuarios")
     public String listarUsuarios(Model model) {
-        model.addAttribute("usuarios", usuarioRepository.findAllUsuarios());
+        model.addAttribute("usuarios", usuarioRepository.findAll());
         return "usuarios";
     }
 

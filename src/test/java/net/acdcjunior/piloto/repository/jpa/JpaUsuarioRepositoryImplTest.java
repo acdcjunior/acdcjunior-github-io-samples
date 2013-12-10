@@ -87,10 +87,10 @@ public class JpaUsuarioRepositoryImplTest {
 	}
 	
 	@Test
-	public void findAllUsuarios__deve_trazer_todos_os_usuarios_da_base() {
+	public void findAll__deve_trazer_todos_os_usuarios_da_base() {
 		// given
 		// when
-		List<Usuario> todosUsuarios = jpaUsuarioRepositoryImpl.findAllUsuarios();
+		List<Usuario> todosUsuarios = jpaUsuarioRepositoryImpl.findAll();
 		// then
 		assertThat(todosUsuarios, hasSize(3));
 		assertThat(todosUsuarios, hasItem(jpaUsuarioRepositoryImpl.findById(usuario_1.getId())));
