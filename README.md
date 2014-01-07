@@ -1,7 +1,7 @@
 spring-mvc-jpa-mockito-piloto
 =============================
 
-Aplicacao "Piloto" mostrando o uso de Spring MVC + JPA + Mockito
+Aplicacao "Piloto" minimalista mostrando o uso de **Spring MVC + JPA/Hibernate + Testes com Mockito**.
 
 ##Como usar:
 
