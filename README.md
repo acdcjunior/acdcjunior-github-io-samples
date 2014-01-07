@@ -40,7 +40,15 @@ O objetivo da aplicacao eh fornecer infraestrutura de exemplo para:
 - Controladores Spring MVC
 - Entidades e queries do JPA 2.0
 - Testes de controladores e de repositorios (com banco embarcado)
+- Fomentar o TDD com testes infraestrutura jah preparados para todas as partes do sistema
 
 ##Outros/detalhes do uso
 
 - Como nao eh possivel ter `<link rel="stylesheet">` no `<body>`, os nomes dos arquivos css sao definidos no `tiles.xml`, junto com a view.
+
+
+##Futuro
+
+- Renomeacao dos arquivos JSP e como sao organizados em pastas para um modelo que seja adequado ateh a maiores sitemas (com dezenas de JSPs)
+- Adicao de controlador retornando JSON e exemplo de jQuery consumindo o JSON
+- Aplicacao de conceitos exemplo de [Domain-Driven Design](http://en.wikipedia.org/wiki/Domain-driven_design)
