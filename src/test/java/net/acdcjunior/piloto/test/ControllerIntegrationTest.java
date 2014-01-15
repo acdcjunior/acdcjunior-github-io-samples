@@ -17,7 +17,7 @@ public abstract class ControllerIntegrationTest {
     @Autowired
     private WebApplicationContext wac;
     
-    protected MockMvc buildMockMvc() {
+    protected MockMvc mockMvc() {
 		return MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
 
