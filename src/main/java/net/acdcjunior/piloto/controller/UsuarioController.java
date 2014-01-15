@@ -27,13 +27,13 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/usuarios/novo", method = RequestMethod.GET)
-    public String novoUsuario(Model model) {
+    public String novoUsuario() {
         return "usuarios-novo";
     }
 
     @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
     @Transactional
-    public String criarUsuario(Model model, String nome) {
+    public String criarUsuario(String nome) {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
