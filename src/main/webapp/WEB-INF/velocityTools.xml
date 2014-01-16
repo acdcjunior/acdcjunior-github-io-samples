@@ -1,0 +1,47 @@
+<toolbox>
+	<xhtml>true</xhtml>
+	<tool>
+		<key>msg</key>
+		<scope>request</scope>
+		<parameter name="bundles" value="mensagens" />
+		<parameter name="defaultBundle" value="mensagens" />
+		<parameter name="locale" value="pt_BR" />
+		<class>org.apache.velocity.tools.generic.ResourceTool</class>
+	</tool>
+	<tool>
+		<key>escapeTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+	<tool>
+		<key>dateTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="dd/MM/yyyy" />
+	</tool>
+	<tool>
+		<key>displayTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DisplayTool</class>
+	</tool>
+	<tool>
+		<key>mathTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<tool>
+		<key>iterTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.IteratorTool</class>
+	</tool>
+	<tool>
+		<key>sortTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.SortTool</class>
+	</tool>
+	<tool>
+		<key>listTool</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.ListTool</class>
+	</tool>
+</toolbox>

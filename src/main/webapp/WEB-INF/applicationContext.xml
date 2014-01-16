@@ -47,13 +47,7 @@
 		<property name="suffix" value=".jsp" />
 		<property name="layoutUrl" value="layout/layout.jsp" />
 
-		<property name="attributesMap">
-			<map>
-				<entry key="dateTool"><bean class="org.apache.velocity.tools.generic.DateTool" /></entry>
-				<entry key="escapeTool"><bean class="org.apache.velocity.tools.generic.EscapeTool" /></entry>
-				<entry key="msg"><bean class="org.apache.velocity.tools.generic.ResourceTool" /></entry>
-			</map>
-		</property>
+		<property name="toolboxConfigLocation" value="/WEB-INF/velocityTools.xml" />
 	</bean>
 
 	<!-- FIM :: TECNOLOGIA DA VIEW -->

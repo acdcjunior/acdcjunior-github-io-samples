@@ -22,7 +22,8 @@
 	<div class="portal-footer">#parse('layout/footer.jsp')</div>
 
 	<!-- Ver: http://developer.yahoo.com/performance/rules.html#js_bottom  -->
-	<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="#springUrl('/static/js/layout.main.js')"></script>
+	<script type="text/javascript" src="#springUrl('/static/libs/jquery/jquery-1.10.2.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/static/js/layout/layout.js')"></script>
+	$script ## trecho de JavaScript definido por cada view
 </body>
 </html>

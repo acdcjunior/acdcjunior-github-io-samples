@@ -1,6 +1,7 @@
 <div>
 	<h1>$msg.usuario.novo</h1>
-	<form action="#springUrl('/usuarios')" method="post">
-		$msg.nome: <input name="nome" type="text" /> <input type="submit" />
+	<form action="#springUrl('/usuario')" method="POST">
+		<label for="nome">$msg.nome:</label><input name="nome" type="text" />
+		<input type="submit" />
 	</form>
 </div>
