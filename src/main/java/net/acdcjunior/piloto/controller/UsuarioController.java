@@ -15,42 +15,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
     
-    @RequestMapping("/usuarios")
+    @RequestMapping
     public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.findAll());
-        return "usuarios";
+        return "usuario/all";
     }
 
-    @RequestMapping(value = "/usuarios/novo", method = RequestMethod.GET)
+    @RequestMapping(value = "/novo", method = RequestMethod.GET)
     public String novoUsuario() {
-        return "usuarios-novo";
+        return "usuario/novo";
     }
 
-    @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @Transactional
     public String criarUsuario(String nome) {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
         usuarioRepository.save(usuario);
-        return "redirect:/usuarios";
+        return "redirect:/usuario";
     }
     
-    @RequestMapping("/usuarios-string")  
+    @RequestMapping("/string")  
     public ModelAndView variavelString() {  
-        return new ModelAndView("usuarios-string", "variavelString", "Exemplo de como passar variavel!");  
+        return new ModelAndView("usuario/string", "variavelString", "Exemplo de como passar variavel!");  
     }
     
-    @RequestMapping("/usuarios-map")  
+    @RequestMapping("/map")  
     public ModelAndView variavelMap() {
     	Map<String, String> model = new HashMap<>();
     	model.put("um", "111111");
     	model.put("dois", "222222");
-        return new ModelAndView("usuarios-map", "variavelMap", model);  
+        return new ModelAndView("usuario/map", "variavelMap", model);  
     }
     
 }

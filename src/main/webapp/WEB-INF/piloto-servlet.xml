@@ -37,17 +37,23 @@
     
     <!-- INICIO :: TECNOLOGIA DA VIEW -->
 
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass">
-			<value>org.springframework.web.servlet.view.tiles3.TilesView</value>
-		</property>
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/views/"/>
 	</bean>
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles.xml</value>
-			</list>
-		</property> 
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="cache" value="true" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".jsp" />
+		<property name="layoutUrl" value="layout/layout.jsp" />
+
+		<property name="attributesMap">
+			<map>
+				<entry key="dateTool"><bean class="org.apache.velocity.tools.generic.DateTool" /></entry>
+				<entry key="escapeTool"><bean class="org.apache.velocity.tools.generic.EscapeTool" /></entry>
+				<entry key="msg"><bean class="org.apache.velocity.tools.generic.ResourceTool" /></entry>
+			</map>
+		</property>
 	</bean>
 
 	<!-- FIM :: TECNOLOGIA DA VIEW -->
