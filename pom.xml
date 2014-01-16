@@ -209,6 +209,29 @@
 	            <version>2.6</version>
 	        </plugin>
 	        <!-- FIM Cobertura -->
+
+			<!-- INICIO Jasmine-Maven -->
+			<plugin>
+				<groupId>com.github.searls</groupId>
+				<artifactId>jasmine-maven-plugin</artifactId>
+				<version>1.3.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+                <configuration>
+                    <specRunnerTemplate>REQUIRE_JS</specRunnerTemplate>
+                    <jsSrcDir>${project.basedir}/src/main/webapp/static/js</jsSrcDir>
+                    <jsTestSrcDir>${project.basedir}/src/test/javascript</jsTestSrcDir>
+                    <customRunnerConfiguration>${project.basedir}/src/test/javascript/_jasmine/jasmineConfig.txt</customRunnerConfiguration>
+                    <preloadSources><source>_jasmine/require.js</source></preloadSources>
+				</configuration>
+			</plugin>
+			<!-- FIM Jasmine-Maven -->
+
 		</plugins>
 	</build>
 	

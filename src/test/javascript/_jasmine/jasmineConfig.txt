@@ -1,0 +1,32 @@
+paths : {
+	_jasmine : '/spec/_jasmine',
+},
+map: {
+    /* Cria um alias para o nome 'jQuery'.
+    	Ele carregarah a jasmine-jquery, que, alem de incluir a jQuery, adiciona varios matchers. */
+    '*': {
+        'jQuery': '_jasmine/jasmine-jquery'
+    }
+},
+shim: {
+	'lib/jquery/jquery-1.10.2' : {
+		exports: 'jQuery',
+	},
+	'_jasmine/jasmine-jquery' : {
+		deps: ['lib/jquery/jquery-1.10.2'],
+		exports: 'jQuery'
+	}
+}
+/*
+	ATENCAO:
+	Os testes executam em uma instancia do jetty.
+	Tudo que estah no sourceDir (src/main/webapp/static/js) vai pra "src" do servidor.
+	Tudo que estah no testDir (src/test/javascript) vai pra pasta "spec".
+	
+	Para debugar/desenvolver mais facilmente, use "mvn jasmine:bdd" e acesse http://127.0.0.1:8234/
+	Marcar a checkbox "No try/catch" no canto direito superior tambem pode ser util.
+	
+	Apenas apos os estes estarem rodando tranquilamente no servidor, teste com o "mvn jasmine:test".
+	Neste caso o codigo JavaScript eh executado com o HtmlUnit como browser, podendo haver
+	inconsistencias (que devem ser sanadas), portanto.
+ */

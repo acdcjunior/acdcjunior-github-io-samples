@@ -1,1 +1,2 @@
-console.log('Apenas um exemplo.');
+$('.portal-conteudo').append('Exemplo de conteudo adicionado via JavaScript');
+console.log('ball!');
