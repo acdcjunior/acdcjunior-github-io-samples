@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("file:src/main/webapp/WEB-INF/piloto-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public abstract class ControllerIntegrationTest {
 	
     @Autowired
