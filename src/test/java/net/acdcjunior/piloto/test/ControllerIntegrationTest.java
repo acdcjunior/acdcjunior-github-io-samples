@@ -15,10 +15,10 @@ import org.springframework.web.context.WebApplicationContext;
 public abstract class ControllerIntegrationTest {
 	
     @Autowired
-    private WebApplicationContext wac;
+    private WebApplicationContext applicationContext;
     
     protected MockMvc mockMvc() {
-		return MockMvcBuilders.webAppContextSetup(this.wac).build();
+		return MockMvcBuilders.webAppContextSetup(applicationContext).build();
 	}
 
 }

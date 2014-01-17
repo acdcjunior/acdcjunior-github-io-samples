@@ -9,6 +9,9 @@
 	<packaging>war</packaging>
 
 	<properties>
+		<!-- encoding dos fontes e resources (o valor default para todos os plugins) -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<versao.spring>3.2.5.RELEASE</versao.spring>
 		<versao.hibernate>4.2.7.SP1</versao.hibernate>
 		<versao.tiles>3.0.3</versao.tiles>
