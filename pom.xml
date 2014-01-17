@@ -231,6 +231,32 @@
                     <jsTestSrcDir>${project.basedir}/src/test/javascript</jsTestSrcDir>
                     <customRunnerConfiguration>${project.basedir}/src/test/javascript/_jasmine/jasmineConfig.txt</customRunnerConfiguration>
                     <preloadSources><source>_jasmine/require.js</source></preloadSources>
+                    
+                	<!-- Por conta do Saga Coverage -->
+                	<keepServerAlive>true</keepServerAlive>
+				</configuration>
+			</plugin>
+		
+			<!-- Code coverage do JavaScript com o Saga  -->
+			<plugin>
+				<groupId>com.github.timurstrekalov</groupId>
+				<artifactId>saga-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>coverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<baseDir>http://localhost:${jasmine.serverPort}</baseDir>
+					<outputDir>${project.build.directory}/javascript-coverage</outputDir>
+					<noInstrumentPatterns>
+						<pattern>.*/spec/.*</pattern> <!-- don't instrument specs -->
+						<pattern>.*/src/lib/.*</pattern> <!-- nem as libs -->
+					</noInstrumentPatterns>
 				</configuration>
 			</plugin>
 			<!-- FIM Jasmine-Maven -->
