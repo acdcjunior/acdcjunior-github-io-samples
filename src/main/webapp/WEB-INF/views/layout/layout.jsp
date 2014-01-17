@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="#springUrl('/static/css/')layout/header.css" />
 
 	#foreach ($arquivoCss in $css)
-		<link rel="stylesheet" href="#springUrl('/static/css/')$arquivoCss" />
+		<link rel="stylesheet" href="#springUrl('/static/css/')$viewName/$arquivoCss" />
 	#end
 </head>
 <body>
@@ -22,7 +22,7 @@
 	<div class="portal-footer">#parse('layout/footer.jsp')</div>
 
 	<!-- Ver: http://developer.yahoo.com/performance/rules.html#js_bottom  -->
-	<script type="text/javascript" src="#springUrl('/static/libs/jquery/jquery-1.10.2.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/static/js/lib/jquery/jquery-1.10.2.min.js')"></script>
 	<script type="text/javascript" src="#springUrl('/static/js/layout/layout.js')"></script>
 	$script ## trecho de JavaScript definido por cada view
 </body>

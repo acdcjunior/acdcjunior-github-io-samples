@@ -1,7 +1,6 @@
-#set($titulo = "Usuarios - Todos")
-#set($viewName = "usuarios") 
-##set($scripts = "login/_includes.jsp")
-#set($css =  ["usuario/um.css", "usuario.dois.css"] )
+#set($titulo = "Usuario - Todos")
+#set($viewName = "usuario") 
+#set($css = ["um.css", "dois.css"])
 
 <div class="usuario">
 	<h1>$msg.usuario.cadastrados</h1>
@@ -26,9 +25,15 @@
 #define( $script )
 	
 	#if( $listTool.size($usuarios) > 3 )
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function() {
 			alert("Temos mais de 3 usuarios, voce deve ter inserido algum!!");
+		});
+	</script>
+	#else
+	<script type="text/javascript">
+		$(document).ready(function() {
+			console.log('Temos $listTool.size($usuarios) usuarios.');
 		});
 	</script>
 	#end
