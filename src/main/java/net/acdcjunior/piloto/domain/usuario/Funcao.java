@@ -1,6 +1,8 @@
-package net.acdcjunior.piloto.domain;
+package net.acdcjunior.piloto.domain.usuario;
 
 import javax.persistence.*;
+
+import net.acdcjunior.piloto.domain.BaseEntity;
 
 @Entity
 @Table(name = "tb_funcao")

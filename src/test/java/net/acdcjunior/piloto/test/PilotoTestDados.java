@@ -1,7 +1,7 @@
 package net.acdcjunior.piloto.test;
 
-import net.acdcjunior.piloto.domain.Funcao;
-import net.acdcjunior.piloto.domain.Usuario;
+import net.acdcjunior.piloto.domain.usuario.Funcao;
+import net.acdcjunior.piloto.domain.usuario.Usuario;
 
 /**
  * Esta classe contem, como objetos, as linhas inseridas no banco de testes.

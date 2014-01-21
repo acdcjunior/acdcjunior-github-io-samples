@@ -1,8 +1,6 @@
-package net.acdcjunior.piloto.repository;
+package net.acdcjunior.piloto.domain;
 
 import java.util.List;
-
-import net.acdcjunior.piloto.domain.BaseEntity;
 
 public interface BaseRepository<T extends BaseEntity> {
 	

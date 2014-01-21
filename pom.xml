@@ -12,9 +12,8 @@
 		<!-- encoding dos fontes e resources (o valor default para todos os plugins) -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<versao.spring>3.2.5.RELEASE</versao.spring>
-		<versao.hibernate>4.2.7.SP1</versao.hibernate>
-		<versao.tiles>3.0.3</versao.tiles>
+		<versao.spring>4.0.0.RELEASE</versao.spring>
+		<versao.hibernate>4.3.0.Final</versao.hibernate>
 	</properties>
 
 	<dependencies>
@@ -73,8 +72,7 @@
 			<version>2.2</version>
 	    </dependency>
 	    
-	    <!-- INICIO: View - Tiles 3 -->
-   		<!-- Velocity - Para usar anotações # e $ nas views -->
+	    <!-- INICIO: View - Apache VELOCITY -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
@@ -107,7 +105,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- FIM: View - Tiles 3 -->
+		<!-- FIM: View - Apache VELOCITY -->
 
 		<!-- INICIO: Dependencias de TESTES -->
 		<dependency>
@@ -148,17 +146,6 @@
 		</dependency>
 		<!-- FIM: Dependencias de TESTES -->
 		
-		<!-- Tiles 3, commons-digest e o xerces davam alguma especie de
-		incompatibilidade com a minha versao de JVM (usavam uma versao antiga do xerces ou
-		algo do tipo) quando eu dava "mvn cobertura:cobertura". Adicionando a dependencia
-		abaixo fez o problema sumir. -->
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.11.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
 	</dependencies>
 
 	<build>

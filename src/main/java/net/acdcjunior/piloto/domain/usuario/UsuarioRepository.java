@@ -1,6 +1,6 @@
-package net.acdcjunior.piloto.repository;
+package net.acdcjunior.piloto.domain.usuario;
 
-import net.acdcjunior.piloto.domain.Usuario;
+import net.acdcjunior.piloto.domain.BaseRepository;
 
 public interface UsuarioRepository extends BaseRepository<Usuario> {
 	

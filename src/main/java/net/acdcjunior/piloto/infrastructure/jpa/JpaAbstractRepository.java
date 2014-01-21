@@ -1,4 +1,4 @@
-package net.acdcjunior.piloto.repository.jpa;
+package net.acdcjunior.piloto.infrastructure.jpa;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import net.acdcjunior.piloto.domain.BaseEntity;
-import net.acdcjunior.piloto.repository.BaseRepository;
+import net.acdcjunior.piloto.domain.BaseRepository;
 
 public abstract class JpaAbstractRepository<T extends BaseEntity> implements BaseRepository<T> {
 	

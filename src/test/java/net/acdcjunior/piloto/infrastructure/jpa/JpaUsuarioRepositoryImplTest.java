@@ -1,4 +1,4 @@
-package net.acdcjunior.piloto.repository.jpa;
+package net.acdcjunior.piloto.infrastructure.jpa;
 
 import static net.acdcjunior.piloto.test.PilotoTestDados.usuario_1;
 import static net.acdcjunior.piloto.test.PilotoTestDados.usuario_2;
@@ -13,9 +13,10 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 import java.util.Set;
 
-import net.acdcjunior.piloto.domain.Funcao;
-import net.acdcjunior.piloto.domain.Usuario;
-import net.acdcjunior.piloto.repository.UsuarioRepository;
+import net.acdcjunior.piloto.domain.usuario.Funcao;
+import net.acdcjunior.piloto.domain.usuario.Usuario;
+import net.acdcjunior.piloto.domain.usuario.UsuarioRepository;
+import net.acdcjunior.piloto.infrastructure.jpa.JpaUsuarioRepositoryImpl;
 import net.acdcjunior.piloto.test.InjetarEntityManagerRule;
 import net.acdcjunior.piloto.test.InjetarEntityManagerRule.InjetarEntityManager;
 

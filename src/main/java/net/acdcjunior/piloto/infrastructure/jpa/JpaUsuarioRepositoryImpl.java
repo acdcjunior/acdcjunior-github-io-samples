@@ -1,7 +1,7 @@
-package net.acdcjunior.piloto.repository.jpa;
+package net.acdcjunior.piloto.infrastructure.jpa;
 
-import net.acdcjunior.piloto.domain.Usuario;
-import net.acdcjunior.piloto.repository.UsuarioRepository;
+import net.acdcjunior.piloto.domain.usuario.Usuario;
+import net.acdcjunior.piloto.domain.usuario.UsuarioRepository;
 
 import org.springframework.stereotype.Repository;
 
