@@ -8,11 +8,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import net.acdcjunior.piloto.test.ControllerIntegrationTest;
 
 import org.junit.Test;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-public class UsuarioControllerTest extends ControllerIntegrationTest {
+public class UsuarioControllerTest {
 	
 	@Test
 	public void listarUsuarios__deve_trazer_200_ok() throws Exception {
@@ -22,6 +23,10 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
             	 .andExpect(view().name("usuario/all"));
 	}
 	
+	private MockMvc mockMvc() {
+		return MockMvcBuilders.standaloneSetup(new UsuarioController()).build();
+	}
+
 	@Test
 	public void novoUsuario__deve_trazer_200_ok() throws Exception {
 		mockMvc().perform(get("/usuario/novo"))

@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext-SpringMVC.xml")
 public abstract class ControllerIntegrationTest {
 	
     @Autowired

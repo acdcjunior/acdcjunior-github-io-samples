@@ -24,35 +24,8 @@
     
     <!-- FIM :: CONTEXTO DA APLICACAO, LOCALIZAR E INICIAR BEANS -->
     
-    
-    
-    <!-- INICIO: MVC -->
-    <!-- http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html#mvc-config-enable -->
-    <mvc:annotation-driven/>
-    <!-- http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html#mvc-config-static-resources -->
-	<mvc:resources mapping="/static/**" location="/static/" />
-	<!-- FIM: MVC -->
-    
-    
-    
-    <!-- INICIO :: TECNOLOGIA DA VIEW -->
-
-	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/views/"/>
-	</bean>
-
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-		<property name="cache" value="true" />
-		<property name="prefix" value="" />
-		<property name="suffix" value=".jsp" />
-		<property name="layoutUrl" value="layout/layout.jsp" />
-
-		<property name="toolboxConfigLocation" value="/WEB-INF/velocityTools.xml" />
-	</bean>
-
-	<!-- FIM :: TECNOLOGIA DA VIEW -->
-    
-    
+        <!-- O arquivo abaixo configura o Application Context para a parte Web: O Spring-MVC e o mecanismo de Views. -->
+    <import resource="applicationContext-SpringMVC.xml"/>    
     
     <!-- INICIO :: BANCO DE DADOS E TRANSACOES -->
     
