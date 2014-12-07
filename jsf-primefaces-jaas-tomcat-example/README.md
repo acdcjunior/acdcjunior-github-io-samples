@@ -9,8 +9,8 @@ JSF 2.2 - PrimeFaces with JAAS Authentication in Tomcat Example Project
 
 How to get it:
 
-- Download the [project source code](https://github.com/acdcjunior/jsf-primefaces-jaas-tomcat-example/archive/master.zip);
-- Unzip it;
+- Download the [project source code](https://github.com/acdcjunior/acdcjunior-github-io-example-projects/archive/master.zip);
+- Unzip it and head to this project's folder:  `cd jsf-primefaces-jaas-tomcat-example`;
 - Run it using: `mvn tomcat7:run`
 - Open your browser on: http://127.0.0.1:8080/jsf-primefaces-jaas-tomcat-example/
 
