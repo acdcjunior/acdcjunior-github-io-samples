@@ -1,0 +1,61 @@
+<Context>
+	<!--
+	Quando este projeto for deployado em um tomcat, o datasource usado serah o
+	que foi definido pelo JNDI abaixo.
+	-->
+	<ResourceLink global="jdbc/exampleDataSource" name="jdbc/exampleDataSource" type="javax.sql.DataSource"/>
+	
+	
+	
+	<!--
+	Para defini-lo, vah em
+	
+	$CATALINA_HOME/conf/server.xml (onde $CATALINA_HOME eh a pasta do seu tomcat)
+	
+	Localize o no:
+	
+	    <GlobalNamingResources>
+	    	...
+	    </GlobalNamingResources>
+    
+    e adicione um context la, como, por exemplo:
+    
+	    <GlobalNamingResources>
+	       	...(outros Resources)...
+	    	
+	       	<Resource
+				auth="Container"
+			    name="jdbc/pilotoDataSource"
+			    type="javax.sql.DataSource"
+			    driverClassName="org.h2.Driver"
+			    url="jdbc:h2:bancoH2piloto" 
+			    username="sa"
+			    password=""
+		   	    maxActive="8"
+			    maxIdle="4"
+		        removeAbandoned="true"
+		        removeAbandonedTimeout="20"
+		        logAbandoned="true"
+			/>
+		</GlobalNamingResources>
+		
+	(Nao esqueca de colocar o .jar do driver do banco na pasta \lib do tomcat!)
+	
+	(ATENCAO: Se o tomcat que voce estiver rodando for a partir do eclipse, leia mais abaixo!!!)
+	
+	Com uma configuracao no estilo acima, portanto, seu tomcat de testes pode apontar para um
+	banco, enquanto o de producao apontarah	para outro.
+	
+	Note que, para facilitar, o tomcat que sobe ao usar "mvn tomcat7:run" nao usa este context.xml,
+	e sim o definido em "src/test/resources/tomcat-run/tomcat-run_context.xml" 
+	
+	
+	ECLIPSE:
+	
+	Se o tomcat que voce estiver rodando for a partir do eclipse, o server.xml dele pode
+	ser o que estah na pasta "seu-workspace\Servers\NomeDoSeuTomcat". Note tambem que o arquivo .db
+	do H2 serah criado na pasta raiz do seu eclipse. Ele serah criado vazio, talvez seja interessante
+	que voce rode com o "mvn tomcat7:run" para ele criar o BD e vc vai la e substitui.
+  
+   -->
+</Context>

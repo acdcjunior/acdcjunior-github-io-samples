@@ -13,6 +13,7 @@
         <h:form>
             <p:panel header="Home Page">
                 <h1>Welcome, this is the HOME page.</h1>
+                #{persistenceAwareManagedBean.allCompanies} !
             </p:panel>
 
             <p:panel rendered="#{!loginManager.userLoggedIn}">

@@ -1,0 +1,11 @@
+-- DADOS USADOS NO AMBIENTE DE TESTES
+
+INSERT INTO COMPANY (ID, NAME) VALUES
+(1, 'Yo'),
+(2, 'What');
+
+INSERT INTO EMPLOYEE (ID, NAME, AGE, COMPANY) VALUES
+(1, 'aaa', 40, 1),
+(2, 'bbb', 50, 2),
+(3, 'ccc', 30, 2),
+(4, 'ddd', 20, 1);
